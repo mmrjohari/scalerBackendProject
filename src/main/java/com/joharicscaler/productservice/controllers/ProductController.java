@@ -1,7 +1,6 @@
 package com.joharicscaler.productservice.controllers;
 
 import com.joharicscaler.productservice.dtos.CreateProductRequestDto;
-import com.joharicscaler.productservice.dtos.ErrorDto;
 import com.joharicscaler.productservice.exceptions.ProductNotFoundException;
 import com.joharicscaler.productservice.models.Product;
 import com.joharicscaler.productservice.services.ProductService;
@@ -42,13 +41,5 @@ public class ProductController {
                 createProductRequestDto.getPrice(),
                 createProductRequestDto.getImage(),
                 createProductRequestDto.getCategory());
-    }
-
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<ErrorDto> handleProductNotFoundException(ProductNotFoundException productNotFoundException) {
-        ErrorDto errorDto = new ErrorDto();
-        errorDto.setMessage(productNotFoundException.getMessage());
-
-        return new ResponseEntity<>(errorDto, HttpStatus.NOT_FOUND);
     }
 }
